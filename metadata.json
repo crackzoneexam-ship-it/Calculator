@@ -1,0 +1,6 @@
+{
+  "name": "BizCalc Pro",
+  "description": "Mobile-first Indian business and financial calculator suite featuring 21 specialized calculators including GST, Profit/Loss, Margin, Kirana retail, Agriculture Mandi, EMI, Salary, E-commerce, Real Estate, and Basic Calculator with Hindi/English support, Indian Rupee formatting, and offline calculation history.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
