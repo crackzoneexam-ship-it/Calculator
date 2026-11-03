@@ -1,0 +1,43 @@
+
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'android/**'
+      - '.github/workflows/build-apk.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check Android project
+        run: |
+          if [ ! -f android/gradlew ]; then
+            echo "Android Gradle project not found."
+            echo "This repository may be a web app."
+            exit 1
+          fi
+          chmod +x android/gradlew
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Build APK
+        working-directory: android
+        run: ./gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: calculator-debug-apk
+          path: android/app/build/outputs/apk/debug/*.apk
+          
